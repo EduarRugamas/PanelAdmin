@@ -50,7 +50,7 @@
                 </label>
             </div>
             <div>
-                <input class="btn btn-primary" type="submit" value="Agregar">
+                <input class="btn btn-primary" type="submit" value="Agregar Publicidad">
             </div>
 
         </form>
