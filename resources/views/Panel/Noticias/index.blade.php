@@ -3,34 +3,46 @@
 
 @extends('Plantilla.index_plantila')
 
-@section('tarjeta_')
-    <div class="container">
-        @foreach($noticias as $items)
-        <div class="card-container">
-{{--            <a href="{{ url('Form')}}">Agregar Noticia</a>--}}
-{{--                 {{$loop->iteration}}--}}
-            <div class="header">
-                <a href="#">
-                <img src="{{ asset('storage'.'/'.$items->Foto)}}" alt="" width="150" height="150">
-                </a>
-            </div>
-            <div class="Contenido">
-                <p>
-                   {!!$items->Contenido!!}
-
-                </p>
-                {{-- para agregar iconos para redes sociales--}}
-                {{--            <div class="social">--}}
-                {{--            </div>--}}
-
-                <p>Publicado:{{$items->Fecha}}</p>
-            </div>
-            <br>
-        </div>
-            <br>
-        @endforeach
-        <div>
-        <a class="btn btn-primary" href="{{ url('/noticias/create')}}">Agregar Noticia</a>
-        </div>
-    </div>
+@section('vistas')
+    
+        <table class="table table-light">
+            <thead class="thead-light">
+                <tr>
+                    <th>#</th>
+                    <th>Foto</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Correo</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @isset($noticias)
+                @foreach ($noticias as $noticia)
+                <tr>
+                {{-- <td>{{$loop->iteration}}</td> --}}
+                <td>
+                    <img src="{{ asset('storage'.'/'.$noticia->Foto)}}" alt="" width="200">
+                    
+                </td>
+                <td>{!!$noticia->Contenido!!}</td>
+                <td>{{$noticia->Fecha}}</td>
+                <td>
+                <a href="{{url('/noticias/'.$noticia->id.'/edit')}}">
+                        Editar
+                    </a>
+        
+        
+                <form method="POST" action="{{ url('/empleados/'.$noticia->id)}}">
+                    {{csrf_field()}}
+                    {{method_field('DELETE')}}
+        
+                    <button type="submit" onclick="return confirm('¿Desea Borrar?');">Borrar</button>
+                </form>
+                </td>
+                </tr>
+                @endforeach
+                @endisset
+            </tbody>
+        </table>
 @endsection
