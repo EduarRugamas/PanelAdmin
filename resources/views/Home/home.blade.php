@@ -24,7 +24,7 @@
         @endforeach
         @endisset
         <div>
-            <a class="btn btn-primary" href="{{ url('/noticias/create')}}">Agregar Noticia</a>
+           
         </div>
     </div>
 @endsection

@@ -26,4 +26,4 @@ Route::get('/card', function (){
     return view('Panel.card');
 });
 
-Route::resource('/publicidad','PublicidadController');
+Route::resource('/publicidad','AdsController');
