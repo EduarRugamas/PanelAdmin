@@ -6,7 +6,7 @@
         Formulario de publicacion de Noticias
     </h1>
     <div class=" h-150 row justify-content-center h-100">
-        <form action="{{url('/')}}" METHOD="post" enctype="multipart/form-data">
+        <form action="{{url('/noticias')}}" METHOD="post" enctype="multipart/form-data">
             {{@csrf_field()}}
             <br>
             <div>
