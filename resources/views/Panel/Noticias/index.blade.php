@@ -1,18 +1,16 @@
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
 
 
 @extends('Plantilla.index_plantila')
 
-@section('vistas')
+@section('tabla')
     
         <table class="table table-light">
             <thead class="thead-light">
                 <tr>
-                    <th>#</th>
-                    <th>Foto</th>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Correo</th>
+                   <th>Foto</th>
+                    <th>Contenido</th>
+                    <th>Fecha</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -28,16 +26,16 @@
                 <td>{!!$noticia->Contenido!!}</td>
                 <td>{{$noticia->Fecha}}</td>
                 <td>
-                <a href="{{url('/noticias/'.$noticia->id.'/edit')}}">
+                <a class="btn btn-secondary" href="{{url('/noticias/'.$noticia->id.'/edit')}}">
                         Editar
                     </a>
         
         
-                <form method="POST" action="{{ url('/empleados/'.$noticia->id)}}">
+                <form method="POST" action="{{ url('/noticias/'.$noticia->id)}}">
                     {{csrf_field()}}
                     {{method_field('DELETE')}}
         
-                    <button type="submit" onclick="return confirm('¿Desea Borrar?');">Borrar</button>
+                    <button class="btn btn-danger" type="submit" onclick="return confirm('¿Desea Borrar?');">Borrar</button>
                 </form>
                 </td>
                 </tr>

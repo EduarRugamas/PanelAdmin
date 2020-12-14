@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Noticias_Publicidad;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class NoticiasPublicidadController extends Controller
 {
@@ -91,8 +92,15 @@ class NoticiasPublicidadController extends Controller
      * @param  \App\Noticias_Publicidad  $noticias_Publicidad
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Noticias_Publicidad $noticias_Publicidad)
+    public function destroy($id)
     {
-        //
+        $noticias = Noticias_Publicidad::findOrFail($id);
+
+        if (Storage::delete('public/'.$noticias->Foto)){
+        Noticias_Publicidad::destroy($id);
+        }
+
+        return redirect('noticias')->with('Mensaje', 'Empleado Eliminado');
+
     }
 }

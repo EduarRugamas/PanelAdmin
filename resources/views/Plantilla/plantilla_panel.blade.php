@@ -61,6 +61,7 @@
             <section>
                 <div class="container">
                     @yield('vistas')
+                    @yield('tabla')
                 </div>
             </section>
         </div>
