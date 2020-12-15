@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Ads;
+use App\Noticias_Publicidad;
 use Illuminate\Http\Request;
 
 class PublicidadController extends Controller
 {
     public function index(){
 
-        return view('Panel.Publicidad.index');
+        $publicidad['publicidad'] = Ads::paginate(5);
+        return view('Home.home', $publicidad);
     }
 
     public function create(){

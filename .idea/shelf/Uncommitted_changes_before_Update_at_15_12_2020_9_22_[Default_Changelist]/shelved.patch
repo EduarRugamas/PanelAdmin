@@ -1,0 +1,286 @@
+Index: resources/views/Home/home.blade.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>@extends('Plantilla.plantilla_panel')\r\n@section('vistas')\r\n    <h1>Mostrando las noticias y publicidades</h1>\r\n   @include('Panel.Noticias.index')\r\n@endsection\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/resources/views/Home/home.blade.php b/resources/views/Home/home.blade.php
+--- a/resources/views/Home/home.blade.php	(revision 46418103be0f6d090f17d5ba5aa8ff9e24a9f072)
++++ b/resources/views/Home/home.blade.php	(date 1607982948710)
+@@ -1,5 +1,41 @@
+ @extends('Plantilla.plantilla_panel')
+ @section('vistas')
+     <h1>Mostrando las noticias y publicidades</h1>
+-   @include('Panel.Noticias.index')
++    @isset($noticias)
++        <table class="table table-light">
++            <thead class="thead-light">
++            <tr>
++                <th>Foto</th>
++                <th>Contenido</th>
++                <th>Fecha de Publicacion</th>
++                <th>Acciones</th>
++            </tr>
++            </thead>
++            <tbody>
++
++            @foreach ($noticias as $items)
++                <tr>
++                    <td>
++                        <img src="{{ asset('storage'.'/'.$items->Foto)}}" alt="" width="200">
++                    </td>
++                    <td>{!!$items->Contenido!!}</td>
++                    <td>{{$items->Fecha}}</td>
++                    <td>
++                        <a href="{{url('/noticias/'.$items->id.'/edit')}}">
++                            Editar
++                        </a>
++                        |
++                        {{--                        <form method="POST" action="{{ url('/empleados/'.$items->id)}}">--}}
++                        {{--                            {{csrf_field()}}--}}
++                        {{--                            {{method_field('DELETE')}}--}}
++
++                        {{--                            <button type="submit" onclick="return confirm('¿Desea Borrar?');">Borrar</button>--}}
++                        {{--                        </form>--}}
++                    </td>
++                </tr>
++            @endforeach
++
++            </tbody>
++        </table>
++    @endisset
+ @endsection
+Index: resources/views/Panel/Noticias/index.blade.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css\">\r\n\r\n\r\n@extends('Plantilla.index_plantila')\r\n\r\n@section('vistas')\r\n    \r\n        <table class=\"table table-light\">\r\n            <thead class=\"thead-light\">\r\n                <tr>\r\n                    <th>#</th>\r\n                    <th>Foto</th>\r\n                    <th>Nombre</th>\r\n                    <th>Apellido</th>\r\n                    <th>Correo</th>\r\n                    <th>Acciones</th>\r\n                </tr>\r\n            </thead>\r\n            <tbody>\r\n                @isset($noticias)\r\n                @foreach ($noticias as $noticia)\r\n                <tr>\r\n                {{-- <td>{{$loop->iteration}}</td> --}}\r\n                <td>\r\n                    <img src=\"{{ asset('storage'.'/'.$noticia->Foto)}}\" alt=\"\" width=\"200\">\r\n                    \r\n                </td>\r\n                <td>{!!$noticia->Contenido!!}</td>\r\n                <td>{{$noticia->Fecha}}</td>\r\n                <td>\r\n                <a href=\"{{url('/noticias/'.$noticia->id.'/edit')}}\">\r\n                        Editar\r\n                    </a>\r\n        \r\n        \r\n                <form method=\"POST\" action=\"{{ url('/empleados/'.$noticia->id)}}\">\r\n                    {{csrf_field()}}\r\n                    {{method_field('DELETE')}}\r\n        \r\n                    <button type=\"submit\" onclick=\"return confirm('¿Desea Borrar?');\">Borrar</button>\r\n                </form>\r\n                </td>\r\n                </tr>\r\n                @endforeach\r\n                @endisset\r\n            </tbody>\r\n        </table>\r\n@endsection\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/resources/views/Panel/Noticias/index.blade.php b/resources/views/Panel/Noticias/index.blade.php
+--- a/resources/views/Panel/Noticias/index.blade.php	(revision 46418103be0f6d090f17d5ba5aa8ff9e24a9f072)
++++ b/resources/views/Panel/Noticias/index.blade.php	(date 1607981971086)
+@@ -1,48 +1,7 @@
+-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+-
+ 
+ @extends('Plantilla.index_plantila')
+ 
+ @section('vistas')
+-    
+-        <table class="table table-light">
+-            <thead class="thead-light">
+-                <tr>
+-                    <th>#</th>
+-                    <th>Foto</th>
+-                    <th>Nombre</th>
+-                    <th>Apellido</th>
+-                    <th>Correo</th>
+-                    <th>Acciones</th>
+-                </tr>
+-            </thead>
+-            <tbody>
+-                @isset($noticias)
+-                @foreach ($noticias as $noticia)
+-                <tr>
+-                {{-- <td>{{$loop->iteration}}</td> --}}
+-                <td>
+-                    <img src="{{ asset('storage'.'/'.$noticia->Foto)}}" alt="" width="200">
+-                    
+-                </td>
+-                <td>{!!$noticia->Contenido!!}</td>
+-                <td>{{$noticia->Fecha}}</td>
+-                <td>
+-                <a href="{{url('/noticias/'.$noticia->id.'/edit')}}">
+-                        Editar
+-                    </a>
+-        
+-        
+-                <form method="POST" action="{{ url('/empleados/'.$noticia->id)}}">
+-                    {{csrf_field()}}
+-                    {{method_field('DELETE')}}
+-        
+-                    <button type="submit" onclick="return confirm('¿Desea Borrar?');">Borrar</button>
+-                </form>
+-                </td>
+-                </tr>
+-                @endforeach
+-                @endisset
+-            </tbody>
+-        </table>
++
++
+ @endsection
+Index: resources/views/Panel/Noticias/create.blade.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>@extends('Plantilla.plantilla_panel')\r\n\r\n@section('vistas')\r\n\r\n    <h1>\r\n        Formulario de publicacion de Noticias\r\n    </h1>\r\n    <div class=\" h-150 row justify-content-center h-100\">\r\n        <form action=\"{{url('/noticias')}}\" METHOD=\"post\" enctype=\"multipart/form-data\">\r\n            {{@csrf_field()}}\r\n            <br>\r\n            <div>\r\n                <label for=\"Contenido\" >\r\n                    {{'Contenido'}}\r\n                    <br>\r\n\r\n                    <di>\r\n                        <textarea name=\"Contenido\" id=\"Contenido\" cols=\"40\" rows=\"10\" ></textarea>\r\n                        <script>\r\n\r\n                            CKEDITOR.replace('Contenido', {\r\n                                height: 200,\r\n                                width: 700,\r\n                                baseFloatZIndex: 10005\r\n                            });\r\n                            CKEDITOR.config.extraPlugins = [\"justify\", \"colorbutton\", \"font\"];\r\n                            // CKEDITOR.config.extraPlugins = ;\r\n                            // config.extraPlugins = \"justify\";\r\n                        </script>\r\n                    </di>\r\n\r\n                </label><br>\r\n            </div>\r\n\r\n\r\n\r\n            <div class=\"form-group\">\r\n                <label for=\"Fecha\" >\r\n                    {{'Fecha'}}\r\n                    <br>\r\n                    <input class=\"form-control\" type=\"date\" name=\"Fecha\" value=\"\"><br>\r\n                </label>\r\n            </div>\r\n\r\n            <div>\r\n                <label for=\"Foto\" >\r\n                    {{'Foto'}}\r\n                    <br>\r\n                    <input class=\"form-control-file\" type=\"file\" name=\"Foto\" value=\"\"><br>\r\n                </label>\r\n            </div>\r\n            <div>\r\n                <input class=\"btn btn-primary\" type=\"submit\" value=\"Publicar Noticia\">\r\n            </div>\r\n\r\n        </form>\r\n        <br>\r\n    </div>\r\n@endsection\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/resources/views/Panel/Noticias/create.blade.php b/resources/views/Panel/Noticias/create.blade.php
+--- a/resources/views/Panel/Noticias/create.blade.php	(revision 46418103be0f6d090f17d5ba5aa8ff9e24a9f072)
++++ b/resources/views/Panel/Noticias/create.blade.php	(date 1607982868446)
+@@ -6,7 +6,8 @@
+         Formulario de publicacion de Noticias
+     </h1>
+     <div class=" h-150 row justify-content-center h-100">
+-        <form action="{{url('/noticias')}}" METHOD="post" enctype="multipart/form-data">
++{{--        url('/noticias')--}}
++        <form action="{{route('Home')}}" METHOD="post" enctype="multipart/form-data">
+             {{@csrf_field()}}
+             <br>
+             <div>
+@@ -50,7 +51,10 @@
+                 </label>
+             </div>
+             <div>
+-                <input class="btn btn-primary" type="submit" value="Publicar Noticia">
++                <form action="{{url('/')}}">
++                    <input class="btn btn-primary" type="submit" value="Publicar Noticia">
++                </form>
++
+             </div>
+ 
+         </form>
+Index: routes/web.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?php\r\n\r\nuse Illuminate\\Support\\Facades\\Route;\r\n\r\n/*\r\n|--------------------------------------------------------------------------\r\n| Web Routes\r\n|--------------------------------------------------------------------------\r\n|\r\n| Here is where you can register web routes for your application. These\r\n| routes are loaded by the RouteServiceProvider within a group which\r\n| contains the \"web\" middleware group. Now create something great!\r\n|\r\n*/\r\n\r\n//Route::get('/', 'NoticiasPublicidadController@index');\r\nRoute::get('/',function (){\r\n    return view('Home.home');\r\n});\r\nRoute::resource('/noticias','NoticiasPublicidadController');\r\n\r\n/* Route::get('/create', function (){\r\n    return view('Panel.Noticias.create');\r\n}); */\r\nRoute::get('/card', function (){\r\n    return view('Panel.card');\r\n});\r\n\r\nRoute::resource('/publicidad','AdsController');\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/routes/web.php b/routes/web.php
+--- a/routes/web.php	(revision 46418103be0f6d090f17d5ba5aa8ff9e24a9f072)
++++ b/routes/web.php	(date 1607981834151)
+@@ -16,7 +16,7 @@
+ //Route::get('/', 'NoticiasPublicidadController@index');
+ Route::get('/',function (){
+     return view('Home.home');
+-});
++})->name('Home');
+ Route::resource('/noticias','NoticiasPublicidadController');
+ 
+ /* Route::get('/create', function (){
+Index: app/Http/Controllers/NoticiasPublicidadController.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?php\r\n\r\nnamespace App\\Http\\Controllers;\r\n\r\nuse App\\Noticias_Publicidad;\r\nuse Illuminate\\Http\\Request;\r\n\r\nclass NoticiasPublicidadController extends Controller\r\n{\r\n    /**\r\n     * Display a listing of the resource.\r\n     *\r\n     * @return \\Illuminate\\Contracts\\Foundation\\Application|\\Illuminate\\Contracts\\View\\Factory|\\Illuminate\\Http\\Response|\\Illuminate\\View\\View\r\n     */\r\n    public function index()\r\n    {\r\n        $noticias['noticias'] = Noticias_Publicidad::paginate(5);\r\n\r\n        return view('Home.home', $noticias);\r\n    }\r\n\r\n    /**\r\n     * Show the form for creating a new resource.\r\n     *\r\n     * @return \\Illuminate\\Contracts\\Foundation\\Application|\\Illuminate\\Contracts\\View\\Factory|\\Illuminate\\Http\\Response|\\Illuminate\\View\\View\r\n     */\r\n    public function create()\r\n    {\r\n\r\n        return view('Panel.Noticias.create');\r\n    }\r\n\r\n    /**\r\n     * Store a newly created resource in storage.\r\n     *\r\n     * @param  \\Illuminate\\Http\\Request  $request\r\n     * @return \\Illuminate\\Contracts\\Foundation\\Application|\\Illuminate\\Http\\RedirectResponse|\\Illuminate\\Http\\Response|\\Illuminate\\Routing\\Redirector\r\n     */\r\n    public function store(Request $request)\r\n    {\r\n        //\r\n        $datosNoticias = request()->except('_token');\r\n\r\n        if($request->hasFile('Foto')){\r\n            $datosNoticias['Foto']=$request->file('Foto')->store('uploads', 'public');\r\n        }\r\n\r\n        Noticias_Publicidad::insert($datosNoticias);\r\n\r\n        return redirect('/');\r\n\r\n    }\r\n\r\n    /**\r\n     * Display the specified resource.\r\n     *\r\n     * @param  \\App\\Noticias_Publicidad  $noticias_Publicidad\r\n     * @return \\Illuminate\\Http\\Response\r\n     */\r\n    public function show(Noticias_Publicidad $noticias_Publicidad)\r\n    {\r\n        //\r\n    }\r\n\r\n    /**\r\n     * Show the form for editing the specified resource.\r\n     *\r\n     * @param  \\App\\Noticias_Publicidad  $noticias_Publicidad\r\n     * @return \\Illuminate\\Http\\Response\r\n     */\r\n    public function edit(Noticias_Publicidad $noticias_Publicidad)\r\n    {\r\n        //\r\n    }\r\n\r\n    /**\r\n     * Update the specified resource in storage.\r\n     *\r\n     * @param  \\Illuminate\\Http\\Request  $request\r\n     * @param  \\App\\Noticias_Publicidad  $noticias_Publicidad\r\n     * @return \\Illuminate\\Http\\Response\r\n     */\r\n    public function update(Request $request, Noticias_Publicidad $noticias_Publicidad)\r\n    {\r\n        //\r\n    }\r\n\r\n    /**\r\n     * Remove the specified resource from storage.\r\n     *\r\n     * @param  \\App\\Noticias_Publicidad  $noticias_Publicidad\r\n     * @return \\Illuminate\\Http\\Response\r\n     */\r\n    public function destroy(Noticias_Publicidad $noticias_Publicidad)\r\n    {\r\n        //\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/Http/Controllers/NoticiasPublicidadController.php b/app/Http/Controllers/NoticiasPublicidadController.php
+--- a/app/Http/Controllers/NoticiasPublicidadController.php	(revision 46418103be0f6d090f17d5ba5aa8ff9e24a9f072)
++++ b/app/Http/Controllers/NoticiasPublicidadController.php	(date 1607982549159)
+@@ -38,7 +38,7 @@
+      */
+     public function store(Request $request)
+     {
+-        //
++
+         $datosNoticias = request()->except('_token');
+ 
+         if($request->hasFile('Foto')){
+Index: app/Http/Controllers/AdsController.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?php\r\n\r\nnamespace App\\Http\\Controllers;\r\n\r\nuse App\\Ads;\r\nuse Illuminate\\Http\\Request;\r\n\r\nclass AdsController extends Controller\r\n{\r\n    /**\r\n     * Display a listing of the resource.\r\n     *\r\n     * @return \\Illuminate\\Http\\Response\r\n     */\r\n    public function index()\r\n    {\r\n        //\r\n    }\r\n\r\n    /**\r\n     * Show the form for creating a new resource.\r\n     *\r\n     * @return \\Illuminate\\Http\\Response\r\n     */\r\n    public function create()\r\n    {\r\n        return view('Panel.Publicidad.create');\r\n    }\r\n\r\n    /**\r\n     * Store a newly created resource in storage.\r\n     *\r\n     * @param  \\Illuminate\\Http\\Request  $request\r\n     * @return \\Illuminate\\Http\\Response\r\n     */\r\n    public function store(Request $request)\r\n    {\r\n        $datosPublicidad = request()->except('_token');\r\n\r\n        if($request->hasFile('Foto')){\r\n            $datosPublicidad['Foto']=$request->file('Foto')->store('uploads', 'public');\r\n        }\r\n\r\n        Ads::insert($datosPublicidad);\r\n\r\n        return redirect('/');\r\n    }\r\n\r\n    /**\r\n     * Display the specified resource.\r\n     *\r\n     * @param  \\App\\Ads  $ads\r\n     * @return \\Illuminate\\Http\\Response\r\n     */\r\n    public function show(Ads $ads)\r\n    {\r\n        //\r\n    }\r\n\r\n    /**\r\n     * Show the form for editing the specified resource.\r\n     *\r\n     * @param  \\App\\Ads  $ads\r\n     * @return \\Illuminate\\Http\\Response\r\n     */\r\n    public function edit(Ads $ads)\r\n    {\r\n        //\r\n    }\r\n\r\n    /**\r\n     * Update the specified resource in storage.\r\n     *\r\n     * @param  \\Illuminate\\Http\\Request  $request\r\n     * @param  \\App\\Ads  $ads\r\n     * @return \\Illuminate\\Http\\Response\r\n     */\r\n    public function update(Request $request, Ads $ads)\r\n    {\r\n        //\r\n    }\r\n\r\n    /**\r\n     * Remove the specified resource from storage.\r\n     *\r\n     * @param  \\App\\Ads  $ads\r\n     * @return \\Illuminate\\Http\\Response\r\n     */\r\n    public function destroy(Ads $ads)\r\n    {\r\n        //\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/Http/Controllers/AdsController.php b/app/Http/Controllers/AdsController.php
+--- a/app/Http/Controllers/AdsController.php	(revision 46418103be0f6d090f17d5ba5aa8ff9e24a9f072)
++++ b/app/Http/Controllers/AdsController.php	(date 1607968810188)
+@@ -20,7 +20,7 @@
+     /**
+      * Show the form for creating a new resource.
+      *
+-     * @return \Illuminate\Http\Response
++     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
+      */
+     public function create()
+     {
+@@ -31,7 +31,7 @@
+      * Store a newly created resource in storage.
+      *
+      * @param  \Illuminate\Http\Request  $request
+-     * @return \Illuminate\Http\Response
++     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
+      */
+     public function store(Request $request)
+     {
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"4944ef7c-4430-4845-adbd-be1cc428e5be\" name=\"Default Changelist\" comment=\"\" />\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"ComposerSettings\" doNotAsk=\"true\" synchronizationState=\"SYNCHRONIZE\">\r\n    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>\r\n    <execution />\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"PhpWorkspaceProjectConfiguration\">\r\n    <include_path>\r\n      <path value=\"$PROJECT_DIR$/vendor/theseer/tokenizer\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/asm89/stack-cors\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/league/commonmark\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/league/flysystem\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/league/mime-type-detection\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/brick/math\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/laravel/framework\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/laravel/tinker\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/phar-io/manifest\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/phar-io/version\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/doctrine/instantiator\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/doctrine/lexer\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/opis/closure\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/doctrine/inflector\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/nikic/php-parser\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/fideloper/proxy\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/voku/portable-ascii\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/facade/flare-client-php\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/fruitcake/laravel-cors\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/facade/ignition-contracts\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/psr/container\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/facade/ignition\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/psr/log\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/psr/event-dispatcher\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/psr/http-message\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/psr/simple-cache\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/phpoption/phpoption\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/nunomaduro/collision\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/ralouphie/getallheaders\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/tijsverkoyen/css-to-inline-styles\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/sebastian/type\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/sebastian/diff\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/nesbot/carbon\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/sebastian/recursion-context\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/sebastian/object-enumerator\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/sebastian/resource-operations\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/sebastian/environment\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/sebastian/global-state\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/sebastian/code-unit-reverse-lookup\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/dragonmantank/cron-expression\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/sebastian/comparator\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/sebastian/exporter\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/sebastian/version\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/sebastian/object-reflector\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/composer\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/monolog/monolog\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/phpspec/prophecy\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/phpdocumentor/type-resolver\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/phpdocumentor/reflection-docblock\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/phpdocumentor/reflection-common\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/swiftmailer/swiftmailer\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/hamcrest/hamcrest-php\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/polyfill-mbstring\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/deprecation-contracts\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/finder\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/http-client-contracts\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/routing\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/css-selector\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/polyfill-intl-grapheme\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/polyfill-php80\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/polyfill-intl-normalizer\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/polyfill-ctype\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/mime\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/vlucas/phpdotenv\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/error-handler\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/polyfill-php72\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/polyfill-php73\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/event-dispatcher-contracts\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/console\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/polyfill-intl-idn\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/event-dispatcher\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/polyfill-iconv\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/http-foundation\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/var-dumper\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/translation-contracts\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/http-kernel\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/string\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/service-contracts\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/process\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/translation\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/webmozart/assert\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/fzaninotto/faker\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/dnoegel/php-xdg-base-dir\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/egulias/email-validator\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/psy/psysh\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/mockery/mockery\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/guzzlehttp/psr7\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/guzzlehttp/promises\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/guzzlehttp/guzzle\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/phpunit/php-code-coverage\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/phpunit/php-text-template\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/phpunit/phpunit\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/phpunit/php-token-stream\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/phpunit/php-file-iterator\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/ramsey/collection\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/phpunit/php-timer\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/myclabs/deep-copy\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/ramsey/uuid\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/filp/whoops\" />\r\n    </include_path>\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"1lQUmJrQVbz2N9iSwwkKhFCnYm0\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\r\n    <ConfirmationsSetting value=\"1\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\r\n    <property name=\"WebServerToolWindowFactoryState\" value=\"false\" />\r\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$/public/css\" />\r\n    <property name=\"nodejs_package_manager_path\" value=\"npm\" />\r\n    <property name=\"vue.rearranger.settings.migration\" value=\"true\" />\r\n  </component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"$PROJECT_DIR$/public/css\" />\r\n      <recent name=\"$PROJECT_DIR$/public/images\" />\r\n      <recent name=\"$PROJECT_DIR$\" />\r\n      <recent name=\"C:\\laragon\\www\\PanelAdministrativo\\public\" />\r\n      <recent name=\"C:\\laragon\\www\\PanelAdministrativo\\public\\js\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\laragon\\www\\PanelAdministrativo\\resources\\views\\Panel\\Noticias\" />\r\n      <recent name=\"C:\\laragon\\www\\PanelAdministrativo\\resources\\views\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"phpunit.xml\" type=\"PHPUnitRunConfigurationType\" factoryName=\"PHPUnit\">\r\n      <TestRunner scope=\"XML\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"4944ef7c-4430-4845-adbd-be1cc428e5be\" name=\"Default Changelist\" comment=\"\" />\r\n      <created>1607528965315</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1607528965315</updated>\r\n      <workItem from=\"1607528967224\" duration=\"15949000\" />\r\n      <workItem from=\"1607614033215\" duration=\"11039000\" />\r\n      <workItem from=\"1607698464748\" duration=\"16195000\" />\r\n      <workItem from=\"1607883475251\" duration=\"4728000\" />\r\n      <workItem from=\"1607904178638\" duration=\"330000\" />\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"UnknownFeatures\">\r\n    <option featureType=\"com.intellij.fileTypeFactory\" implementationName=\"*.env\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.History.Properties\">\r\n    <option name=\"COLUMN_ID_ORDER\">\r\n      <list>\r\n        <option value=\"Default.Root\" />\r\n        <option value=\"Default.Author\" />\r\n        <option value=\"Default.Date\" />\r\n        <option value=\"Default.Subject\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n    <option name=\"oldMeFiltersMigrated\" value=\"true\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 46418103be0f6d090f17d5ba5aa8ff9e24a9f072)
++++ b/.idea/workspace.xml	(date 1608045745336)
+@@ -1,7 +1,18 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ChangeListManager">
+-    <list default="true" id="4944ef7c-4430-4845-adbd-be1cc428e5be" name="Default Changelist" comment="" />
++    <list default="true" id="4944ef7c-4430-4845-adbd-be1cc428e5be" name="Default Changelist" comment="">
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_12_2020_15_05__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_12_2020_15_05__Default_Changelist_.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_12_2020_9_00__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_12_2020_9_00__Default_Changelist_.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdsController.php" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/NoticiasPublicidadController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/NoticiasPublicidadController.php" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/resources/views/Home/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Home/home.blade.php" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/resources/views/Panel/Noticias/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Panel/Noticias/create.blade.php" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/resources/views/Panel/Noticias/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Panel/Noticias/index.blade.php" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/resources/views/Panel/Publicidad/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Panel/Publicidad/index.blade.php" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
++    </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+@@ -129,17 +140,17 @@
+     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+     <property name="WebServerToolWindowFactoryState" value="false" />
+-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/css" />
++    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+     <property name="nodejs_package_manager_path" value="npm" />
+     <property name="vue.rearranger.settings.migration" value="true" />
+   </component>
+   <component name="RecentsManager">
+     <key name="CopyFile.RECENT_KEYS">
++      <recent name="C:\laragon\www\PanelAdmin" />
+       <recent name="$PROJECT_DIR$/public/css" />
+       <recent name="$PROJECT_DIR$/public/images" />
+       <recent name="$PROJECT_DIR$" />
+       <recent name="C:\laragon\www\PanelAdministrativo\public" />
+-      <recent name="C:\laragon\www\PanelAdministrativo\public\js" />
+     </key>
+     <key name="MoveFile.RECENT_KEYS">
+       <recent name="C:\laragon\www\PanelAdministrativo\resources\views\Panel\Noticias" />
+@@ -165,6 +176,8 @@
+       <workItem from="1607698464748" duration="16195000" />
+       <workItem from="1607883475251" duration="4728000" />
+       <workItem from="1607904178638" duration="330000" />
++      <workItem from="1607960467859" duration="8106000" />
++      <workItem from="1608042024343" duration="886000" />
+     </task>
+     <servers />
+   </component>
+Index: resources/views/Panel/Publicidad/index.blade.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/resources/views/Panel/Publicidad/index.blade.php b/resources/views/Panel/Publicidad/index.blade.php
+--- a/resources/views/Panel/Publicidad/index.blade.php	(revision 46418103be0f6d090f17d5ba5aa8ff9e24a9f072)
++++ b/resources/views/Panel/Publicidad/index.blade.php	(date 1607980634970)
+@@ -1,0 +1,6 @@
++@extends('Plantilla.plantilla_panel')
++@section('vistas')
++
++
++
++@endsection

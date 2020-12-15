@@ -26,4 +26,8 @@ Route::get('/card', function (){
     return view('Panel.card');
 });
 
+Route::get('/doctores', function (){
+    return view('Doctores.create');
+})->name('Form.doctores');
+
 Route::resource('/publicidad','AdsController');
