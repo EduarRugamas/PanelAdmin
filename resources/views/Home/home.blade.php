@@ -6,7 +6,14 @@
 @endsection
 @section('tabla')
 
-        @include('Panel.Noticias.index')
+    @isset ($noticias)
+    @include('Panel.Noticias.index')
+    @endisset
+    @isset($publicidad)
+    @include('Panel.Publicidad.index')
+    @endisset
+      
+        
 
 @endsection
 

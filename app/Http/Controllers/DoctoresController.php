@@ -2,23 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Ads;
+use App\Doctores;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
-class AdsController extends Controller
+class DoctoresController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $publicidad = Ads::all();
-        
-        
-        return view('Home.home', compact('publicidad', 'noticias'));
+        //
     }
 
     /**
@@ -28,7 +24,7 @@ class AdsController extends Controller
      */
     public function create()
     {
-        return view('Panel.Publicidad.create');
+        //
     }
 
     /**
@@ -39,24 +35,16 @@ class AdsController extends Controller
      */
     public function store(Request $request)
     {
-        $datosPublicidad = request()->except('_token');
-
-        if($request->hasFile('Foto')){
-            $datosPublicidad['Foto']=$request->file('Foto')->store('uploads', 'public');
-        }
-
-        Ads::insert($datosPublicidad);
-
-        return redirect('/');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Ads  $ads
+     * @param  \App\Doctores  $doctores
      * @return \Illuminate\Http\Response
      */
-    public function show(Ads $ads)
+    public function show(Doctores $doctores)
     {
         //
     }
@@ -64,10 +52,10 @@ class AdsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Ads  $ads
+     * @param  \App\Doctores  $doctores
      * @return \Illuminate\Http\Response
      */
-    public function edit(Ads $ads)
+    public function edit(Doctores $doctores)
     {
         //
     }
@@ -76,10 +64,10 @@ class AdsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Ads  $ads
+     * @param  \App\Doctores  $doctores
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Ads $ads)
+    public function update(Request $request, Doctores $doctores)
     {
         //
     }
@@ -87,10 +75,10 @@ class AdsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Ads  $ads
+     * @param  \App\Doctores  $doctores
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Ads $ads)
+    public function destroy(Doctores $doctores)
     {
         //
     }
