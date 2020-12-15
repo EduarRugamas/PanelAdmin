@@ -69,9 +69,11 @@ class NoticiasPublicidadController extends Controller
      * @param  \App\Noticias_Publicidad  $noticias_Publicidad
      * @return \Illuminate\Http\Response
      */
-    public function edit(Noticias_Publicidad $noticias_Publicidad)
+    public function edit($id)
     {
-        //
+        $noticias = Noticias_Publicidad::findOrFail($id);
+
+        return view('Panel.Noticias.edit', compact('noticias'));
     }
 
     /**
@@ -81,9 +83,22 @@ class NoticiasPublicidadController extends Controller
      * @param  \App\Noticias_Publicidad  $noticias_Publicidad
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Noticias_Publicidad $noticias_Publicidad)
+    public function update(Request $request, $id)
     {
-        //
+        $datosNoticias=request()->except(['_token', '_method']);
+
+        if($request->hasFile('Foto')){
+
+            $noticias = Noticias_Publicidad::findOrFail($id);
+
+            Storage::delete('public/'.$noticias->Foto);
+            
+            $datosNoticias['Foto']=$request->file('Foto')->store('uploads', 'public');
+        }
+
+        Noticias_Publicidad::where('id', '=',$id)->update($datosNoticias);
+
+        return redirect('noticias');
     }
 
     /**
