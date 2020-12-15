@@ -27,7 +27,7 @@
                 <td>{{$noticia->Fecha}}</td>
                 <td>
                 <a class="btn btn-secondary" href="{{url('/noticias/'.$noticia->id.'/edit')}}">
-                        Editar
+                        Edit
                     </a>
         
         
