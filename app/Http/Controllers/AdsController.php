@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Ads;
+use App\Noticias_Publicidad;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -15,10 +16,11 @@ class AdsController extends Controller
      */
     public function index()
     {
-        $publicidad = Ads::all();
+        $publicidad = Ads::paginate(5);
         
-        
-        return view('Home.home', compact('publicidad', 'noticias'));
+
+
+        return view('Home.home', compact('publicidad'));
     }
 
     /**
@@ -67,9 +69,11 @@ class AdsController extends Controller
      * @param  \App\Ads  $ads
      * @return \Illuminate\Http\Response
      */
-    public function edit(Ads $ads)
+    public function edit($id)
     {
-        //
+        $publicidad = Ads::findOrFail($id);
+
+        return view('Panel.publicidad.edit', compact('publicidad'));
     }
 
     /**
@@ -79,9 +83,22 @@ class AdsController extends Controller
      * @param  \App\Ads  $ads
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Ads $ads)
+    public function update(Request $request, $id)
     {
-        //
+        $datospublicidad=request()->except(['_token', '_method']);
+
+        if($request->hasFile('Foto')){
+
+            $publicidad = Ads::findOrFail($id);
+
+            Storage::delete('public/'.$publicidad->Foto);
+            
+            $datospublicidad['Foto']=$request->file('Foto')->store('uploads', 'public');
+        }
+
+        Ads::where('id', '=',$id)->update($datospublicidad);
+
+        return redirect('publicidad');
     }
 
     /**
@@ -90,8 +107,14 @@ class AdsController extends Controller
      * @param  \App\Ads  $ads
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Ads $ads)
+    public function destroy($id)
     {
-        //
+        $publicidad = Ads::findOrFail($id);
+
+        if (Storage::delete('public/'.$publicidad->Foto)){
+        Ads::destroy($id);
+        }
+
+        return redirect('publicidad');
     }
 }

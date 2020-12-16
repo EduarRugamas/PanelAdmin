@@ -32,16 +32,6 @@
                 </label><br>
             </div>
 
-
-
-          {{--   <div class="form-group">
-                <label for="Fecha" >
-                    {{'Fecha'}}
-                    <br>
-                    <input class="form-control" type="date" name="Fecha" value=""><br>
-                </label>
-            </div> --}}
-
             <div>
                 <label for="Foto" >
                     {{'Foto'}}

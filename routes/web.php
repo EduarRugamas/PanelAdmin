@@ -18,7 +18,8 @@ Route::get('/',function (){
     return view('Home.home');
 });
 Route::resource('/noticias','NoticiasPublicidadController');
-
+Route::resource('/doctores', 'DoctoresController');
+Route::resource('/publicidad','AdsController');
 /* Route::get('/create', function (){
     return view('Panel.Noticias.create');
 }); */
@@ -30,4 +31,5 @@ Route::get('/doctores', function (){
     return view('Doctores.create');
 })->name('Form.doctores');
 
-Route::resource('/publicidad','AdsController');
+
+

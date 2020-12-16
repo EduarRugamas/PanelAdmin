@@ -7,10 +7,59 @@
 @section('tabla')
 
     @isset ($noticias)
+    @if ($noticias->isEmpty())
+        @section('tabla')
+
+    <table class="table table-light">
+        <thead class="thead-light">
+            <tr>
+               <th>Foto</th>
+                <th>Contenido</th>
+                <th>Fecha</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>   
+            <tr>
+            <td>No hay contenido</td>
+            <td>No hay contenido</td>
+            <td>No hay contenido</td>
+            <td>No hay contenido </td>
+            </tr>
+           
+        </tbody>
+    </table>
+@endsection
+    @else
     @include('Panel.Noticias.index')
+    @endif
+    
     @endisset
     @isset($publicidad)
-    @include('Panel.Publicidad.index')
+        @if ($publicidad->isEmpty())
+        @section('tabla')
+
+ <table class="table table-light">
+        <thead class="thead-light">
+                <tr>
+                    <th>Foto</th>
+                    <th>Contenido</th>
+                    <th>Acciones</th>
+                </tr>
+        </thead>
+        <tbody>   
+            <tr>
+                <td>No hay contenido</td>
+                <td>No hay contenido</td>
+                <td>No hay contenido </td>
+            </tr>  
+        </tbody>
+ </table>
+    @endsection
+        @else
+        @include('Panel.Publicidad.index')
+        @endif
+    
     @endisset
       
         

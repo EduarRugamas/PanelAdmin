@@ -13,7 +13,7 @@ class CreateDoctoresTable extends Migration
      */
     public function up()
     {
-        Schema::create('doctores', function (Blueprint $table) {
+        Schema::create('doctoresfiles', function (Blueprint $table) {
             $table->id();
             $table->string('biografia');
             $table->string('galeria');
@@ -28,6 +28,6 @@ class CreateDoctoresTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('doctores');
+        Schema::dropIfExists('doctoresfiles');
     }
 }

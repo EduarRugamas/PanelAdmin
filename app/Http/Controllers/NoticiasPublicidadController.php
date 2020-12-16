@@ -15,9 +15,9 @@ class NoticiasPublicidadController extends Controller
      */
     public function index()
     {
-        $noticias['noticias'] = Noticias_Publicidad::paginate(5);
+        $noticias = Noticias_Publicidad::paginate(5);
 
-        return view('Home.home', $noticias);
+        return view('Home.home', compact('noticias'));
     }
 
     /**

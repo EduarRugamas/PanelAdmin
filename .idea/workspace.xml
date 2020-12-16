@@ -2,17 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4944ef7c-4430-4845-adbd-be1cc428e5be" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_12_2020_15_05__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_12_2020_15_05__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_12_2020_9_00__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_12_2020_9_00__Default_Changelist_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PublicidadController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PublicidadController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Home/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Home/home.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Panel/Noticias/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Panel/Noticias/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Panel/Publicidad/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Panel/Publicidad/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Plantilla/index_plantila.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Plantilla/index_plantila.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Plantilla/plantilla_panel.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Plantilla/plantilla_panel.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,7 +132,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/css" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -178,6 +169,7 @@
       <workItem from="1607883475251" duration="4728000" />
       <workItem from="1607904178638" duration="330000" />
       <workItem from="1608064594092" duration="4444000" />
+      <workItem from="1608135380745" duration="856000" />
     </task>
     <servers />
   </component>

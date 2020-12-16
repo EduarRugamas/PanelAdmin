@@ -1,19 +1,23 @@
 @extends('Plantilla.plantilla_panel')
 
 @section('vistas')
+
     <h1>
-        Formulario de Doctores
+        Editar publicacion de Noticias
     </h1>
     <div class=" h-150 row justify-content-center h-100">
-        <form action="{{url('/')}}" METHOD="post" enctype="multipart/form-data">
+        <form action="{{url('/publicidad/'. $publicidad->id)}}" METHOD="post" enctype="multipart/form-data">
             {{@csrf_field()}}
+            {{method_field('PATCH')}}
+          
             <br>
             <div>
                 <label for="Contenido" >
                     {{'Contenido'}}
                     <br>
-                    <di>
-                        <textarea name="Contenido" id="Contenido" cols="40" rows="10" ></textarea>
+
+                    <div>
+                        <textarea name="Contenido" id="Contenido" cols="40" rows="10" >{{$publicidad->Contenido}}</textarea>
                         <script>
 
                             CKEDITOR.replace('Contenido', {
@@ -25,20 +29,10 @@
                             // CKEDITOR.config.extraPlugins = ;
                             // config.extraPlugins = "justify";
                         </script>
-                    </di>
+                    </div>
+
                 </label><br>
             </div>
-
-
-
-            <div class="form-group">
-                <label for="Fecha" >
-                    {{'Fecha'}}
-                    <br>
-                    <input class="form-control" type="date" name="Fecha" value=""><br>
-                </label>
-            </div>
-
             <div>
                 <label for="Foto" >
                     {{'Foto'}}
@@ -47,10 +41,11 @@
                 </label>
             </div>
             <div>
-                <input class="btn btn-primary" type="submit" value="Publicar Noticia">
+                <input class="btn btn-primary" type="submit" value="Guardar Cambios">
             </div>
-
+        
         </form>
         <br>
     </div>
+    
 @endsection

@@ -14,7 +14,7 @@ class DoctoresController extends Controller
      */
     public function index()
     {
-        //
+        return view('Home.home');
     }
 
     /**
@@ -24,7 +24,7 @@ class DoctoresController extends Controller
      */
     public function create()
     {
-        //
+        return view('Doctores.create');
     }
 
     /**
